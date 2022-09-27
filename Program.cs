@@ -17,12 +17,14 @@ namespace Proj1Guessnum
                 while (true)
                 {
                     Console.WriteLine("Guess the number!");
-                    double inp = Convert.ToDouble(Console.ReadLine());
-                    if (inp != num)
+                    String inp = Console.ReadLine();
+                    bool isNum = double.TryParse(inp, out double inpn);
+                    if (isNum == false || (inpn % 1) != 0)
                     {
-                        Console.WriteLine("Wrong Number! Try again.");
+                        Console.WriteLine("Invalid Input!. Try again."); 
                     }
-                    else if (inp == num)
+                    else if (inpn != num) { Console.WriteLine("Wrong Number! Try again."); }
+                    else if (inpn == num)
                     {
                         Console.WriteLine("Correct! Would you like to play again?" +
                             "\n1. Yes" +
@@ -33,14 +35,15 @@ namespace Proj1Guessnum
                             Console.WriteLine("Get ready for round 2!");
                             break;
                         }
-                        else if (i == 2) {
+                        else if (i == 2)
+                        {
                             Console.WriteLine("Thanks for playing! Come again soon.");
                             Environment.Exit(0);
                         }
                         else
                         {
                             Console.WriteLine("Invalid Input. Stopping Program.");
-                            Environment.Exit(0);    
+                            Environment.Exit(0);
                         }
                     }
                 }
